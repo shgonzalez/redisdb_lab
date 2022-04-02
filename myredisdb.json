@@ -1,0 +1,6 @@
+{
+    "name": "myredisdb",
+    "connectionType": "STANDALONE",
+    "host": "redisdb",
+    "port": 6379
+}
