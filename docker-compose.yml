@@ -1,0 +1,27 @@
+version: "3.9"
+
+networks:
+ app-net:
+  driver: bridge
+
+# Creates a Volume managed by Docker
+volumes:
+  redisinsight:
+
+services:
+  redisinsight:
+    image: "redislabs/redisinsight:latest"
+    volumes:
+      - redisinsight:/db
+    ports:
+      # Check firewall permissions to accept connections from outside
+      - "0.0.0.0:8001:8001"
+    networks:
+      - app-net
+    depends_on:
+      - redisdb
+
+  redisdb:
+    image: "redis:alpine"
+    networks:
+      - app-net
